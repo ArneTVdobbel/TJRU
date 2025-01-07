@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TJRUU</title>
+    <title>TJRU</title>
     <style>
         body {
             margin: 0;
@@ -13,10 +13,26 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            position: relative;
+        }
+
+        .clickable-area {
+            position: absolute;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .clickable-area:hover {
+            border-color: rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
 <body>
-    
+    <div id="tv-link" class="clickable-area" 
+         style="top: 20%; left: 30%; width: 200px; height: 150px;"
+         onclick="window.location.href='tv.html'">
+    </div>
 </body>
 </html>
