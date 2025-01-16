@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJRU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: #00b5b5; /* Turkis bakgrunn som i bildet */
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1em;
+            z-index: 100;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            padding: 80px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .frame {
+            position: relative;
+            background: #8b4513; /* Brun treramme */
+            padding: 20px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        .frame::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 20px;
+            background: url('nail.png') no-repeat center; /* Spiker-bilde */
+            background-size: contain;
+        }
+
+        .frame-content {
+            background: #ffffd9; /* Lysegul bakgrunn som i bildet */
+            width: 100%;
+            height: 0;
+            padding-bottom: 75%; /* 4:3 forhold */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .frame-content img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Bjørneteppe i bunnen */
+        .bear-rug {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 200px;
+            background: url('bear-rug.png') no-repeat center bottom;
+            background-size: contain;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-container {
+                grid-template-columns: 1fr;
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body class="gallery-page">
+    <button class="retro-button back-button" onclick="window.location.href='index.html'">Tilbake</button>
+    
+    <div class="content-container gallery-grid">
+        <!-- Album Artwork -->
+        <div class="gallery-item">
+            <img src="gallery/album-art-1.jpg" alt="Midnight Malfunction Album Art">
+            <div class="gallery-info">
+                <h3 class="gallery-title">Midnight Malfunction</h3>
+                <p class="gallery-description">Album artwork, 2024</p>
+            </div>
+        </div>
+
+        <!-- Live Photos -->
+        <div class="gallery-item">
+            <img src="gallery/live-1.jpg" alt="TJRU Live at Blå">
+            <div class="gallery-info">
+                <h3 class="gallery-title">Live at Blå</h3>
+                <p class="gallery-description">Konsertfoto, 2023</p>
+            </div>
+        </div>
+
+        <!-- Art Prints -->
+        <div class="gallery-item">
+            <img src="gallery/print-1.jpg" alt="TJRU Art Print">
+            <div class="gallery-info">
+                <h3 class="gallery-title">Vintage Dreams</h3>
+                <p class="gallery-description">Limited Edition Print</p>
+            </div>
+        </div>
+
+        <!-- Behind the Scenes -->
+        <div class="gallery-item">
+            <img src="gallery/studio-1.jpg" alt="Studio Session">
+            <div class="gallery-info">
+                <h3 class="gallery-title">Studio Sessions</h3>
+                <p class="gallery-description">Behind the scenes, 2024</p>
+            </div>
+        </div>
+
+        <!-- Merchandise Design -->
+        <div class="gallery-item">
+            <img src="gallery/merch-1.jpg" alt="Merch Design">
+            <div class="gallery-info">
+                <h3 class="gallery-title">Collection '24</h3>
+                <p class="gallery-description">Clothing designs</p>
+            </div>
+        </div>
+
+        <!-- Visual Art -->
+        <div class="gallery-item">
+            <img src="gallery/art-1.jpg" alt="TJRU Visual Art">
+            <div class="gallery-info">
+                <h3 class="gallery-title">Digital Dreams</h3>
+                <p class="gallery-description">Digital artwork, 2024</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="tjru-signature">
+        <span>T</span>
+        <span>J</span>
+        <span>R</span>
+        <span>U</span>
+    </div>
+</body>
+</html>

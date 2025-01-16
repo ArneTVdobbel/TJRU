@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJRU - KLÆR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: #000;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1em;
+            z-index: 100;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .header {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('fashion-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 8em;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: 15px;
+            text-transform: uppercase;
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2px;
+            background: #000;
+            padding: 2px;
+        }
+
+        .collection-item {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+
+        .collection-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .collection-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .item-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 25px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .collection-item:hover .item-info {
+            transform: translateY(0);
+        }
+
+        .item-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .item-price {
+            font-size: 1em;
+            font-weight: 300;
+            margin: 5px 0 0;
+        }
+
+        .coming-soon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            padding: 15px 30px;
+            border: 2px solid #fff;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 4em;
+                letter-spacing: 8px;
+            }
+        }
+
+        .buy-button {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 8px 20px;
+            margin-top: 15px;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .buy-button:hover {
+            background: #fff;
+            color: #000;
+        }
+    </style>
+</head>
+<body class="klaer-page">
+    <button class="retro-button back-button" onclick="window.location.href='index.html'">Tilbake</button>
+    
+    <div class="header">
+        <h1 class="page-title">KLÆR</h1>
+    </div>
+
+    <div class="content-container clothing-grid">
+        <!-- Luer -->
+        <div class="collection-item">
+            <img src="klaer/beanie-black.jpg" alt="TJRU Classic Beanie">
+            <div class="item-info">
+                <h3 class="item-name">TJRU Classic Beanie</h3>
+                <p class="item-description">Sort strikkelue med brodert TJRU logo</p>
+                <p class="item-price">299 NOK</p>
+                <button class="retro-button">Kjøp</button>
+            </div>
+        </div>
+
+        <!-- Caps -->
+        <div class="collection-item">
+            <img src="klaer/cap-vintage.jpg" alt="TJRU Vintage Cap">
+            <div class="item-info">
+                <h3 class="item-name">TJRU Vintage Cap</h3>
+                <p class="item-description">Distressed denim caps med patch</p>
+                <p class="item-price">349 NOK</p>
+                <button class="retro-button">Kjøp</button>
+            </div>
+        </div>
+
+        <!-- T-skjorter -->
+        <div class="collection-item">
+            <img src="klaer/tshirt-white.jpg" alt="TJRU Essential Tee">
+            <div class="item-info">
+                <h3 class="item-name">TJRU Essential Tee</h3>
+                <p class="item-description">Hvit t-skjorte med vintage print</p>
+                <p class="item-price">399 NOK</p>
+                <button class="retro-button">Kjøp</button>
+            </div>
+        </div>
+
+        <!-- Hettegenser -->
+        <div class="collection-item">
+            <img src="klaer/hoodie-black.jpg" alt="TJRU Premium Hoodie">
+            <div class="item-info">
+                <h3 class="item-name">TJRU Premium Hoodie</h3>
+                <p class="item-description">Sort hettegenser med brodert design</p>
+                <p class="item-price">699 NOK</p>
+                <button class="retro-button">Kjøp</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tjru-signature">
+        <span>T</span>
+        <span>J</span>
+        <span>R</span>
+        <span>U</span>
+    </div>
+</body>
+</html> 

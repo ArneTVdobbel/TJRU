@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJRU</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('images/front.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        .clickable-area {
+            position: absolute;
+            cursor: pointer;
+            background: transparent;
+            transition: backdrop-filter 0.3s;
+            border: none;
+        }
+
+        .clickable-area:hover {
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            background: transparent;
+        }
+
+        #tv-link {
+            top: 35%;
+            left: 18%;
+            width: 300px;
+            height: 216px;
+        }
+
+        #galleri-link {
+            top: 4%;
+            left: 3%;
+            width: 250px;
+            height: 280px;
+        }
+
+        #kalender-link {
+            top: 1%;
+            right: 48%;
+            width: 180px;
+            height: 200px;
+            transform: rotate(-5deg);
+        }
+
+        #katalog-link {
+            bottom: 8%;
+            left: 2%;
+            width: 520px;
+            height: 293px;
+        }
+
+        #klaer-link {
+            top: 8%;
+            right: 20%;
+            width: 276px;
+            height: 90vh;
+        }
+
+        #spade-link {
+            position: absolute;
+            right: 0;
+            top: 15%;
+            width: 60px;
+            height: 500px;
+            z-index: 1000;
+            background: rgba(255, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="tv-link" class="clickable-area" 
+         onclick="window.location.href='tv.html'">
+    </div>
+    <div id="galleri-link" class="clickable-area" 
+         onclick="window.location.href='GALLERI.html'">
+    </div>
+    <div id="kalender-link" class="clickable-area" 
+         onclick="window.location.href='KALENDER.html'">
+    </div>
+    <div id="katalog-link" class="clickable-area" 
+         onclick="window.location.href='KATALOG.html'">
+    </div>
+    <div id="klaer-link" class="clickable-area" 
+         onclick="window.location.href='SHOP.html'">
+    </div>
+    <div id="spade-link" class="clickable-area" 
+         onclick="window.location.href='SPILL.html'">
+    </div>
+</body>
+</html>

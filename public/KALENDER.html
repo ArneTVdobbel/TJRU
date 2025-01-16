@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJRU - Kalender</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: #fff;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 2px solid #000;
+            color: #000;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1em;
+            z-index: 100;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .calendar-header {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .calendar-header h1 {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 5em;
+            color: #000;
+            margin: 0;
+            letter-spacing: 5px;
+        }
+
+        .events-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .event-item {
+            border: 2px solid #000;
+            margin-bottom: 20px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            background: transparent;
+        }
+
+        .event-item:hover {
+            transform: translateX(10px);
+        }
+
+        .event-date {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .event-title {
+            font-size: 1.8em;
+            margin: 10px 0;
+        }
+
+        .event-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .event-location {
+            font-style: italic;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body class="kalender-page">
+    <button class="retro-button back-button bottom-right" onclick="window.location.href='index.html'">Tilbake</button>
+    
+    <div class="header right-aligned">
+        <h1 class="page-title">KALENDER</h1>
+    </div>
+
+    <div class="calendar-container">
+        <!-- Månedvelger -->
+        <div class="month-selector">
+            <button class="retro-button">◀</button>
+            <h2>MARS 2024</h2>
+            <button class="retro-button">▶</button>
+        </div>
+
+        <!-- Cartoon-style kalender -->
+        <div class="cartoon-calendar">
+            <div class="calendar-grid">
+                <div class="calendar-header">Man</div>
+                <div class="calendar-header">Tir</div>
+                <div class="calendar-header">Ons</div>
+                <div class="calendar-header">Tor</div>
+                <div class="calendar-header">Fre</div>
+                <div class="calendar-header">Lør</div>
+                <div class="calendar-header">Søn</div>
+                
+                <!-- Kalenderdager -->
+                <div class="calendar-day">1</div>
+                <div class="calendar-day">2</div>
+                <div class="calendar-day">3</div>
+                <!-- osv... -->
+                
+                <!-- Dag med event -->
+                <div class="calendar-day has-event" onclick="showEvent('event1')">
+                    15
+                    <div class="event-marker">🎵</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event detaljer -->
+        <div class="event-details" id="event1">
+            <div class="event-card">
+                <img src="events/live-at-bla.jpg" alt="TJRU Live @ Blå">
+                <h3>TJRU Live @ Blå</h3>
+                <p class="event-time">20:00</p>
+                <p class="event-location">Blå, Oslo</p>
+                <p class="event-description">Live performance med fullt band. Support: TBA</p>
+                <p class="event-price">200 NOK</p>
+                <button class="retro-button ticket-button">Kjøp Billetter</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="tjru-signature">
+        <span>T</span>
+        <span>J</span>
+        <span>R</span>
+        <span>U</span>
+    </div>
+</body>
+</html> 
