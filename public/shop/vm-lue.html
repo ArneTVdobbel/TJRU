@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VM Lue - TJRU SHOP</title>
+    <style>
+        /* Samme grunnleggende stiler som SHOP.html */
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .product-container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 20px;
+            display: flex;
+            gap: 40px;
+        }
+
+        .product-image {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-info {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .buy-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #bf953f;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .buy-button:hover {
+            background: #d4af37;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <a href="/SHOP.html" class="back-button">TILBAKE</a>
+
+    <div class="product-container">
+        <div class="product-image">
+            <img src="/images/vm-lue.png" alt="VM Lue">
+        </div>
+        <div class="product-info">
+            <h1>VULGÆR MÅLFORM LUE</h1>
+            <p>Blå lue med VM-logo</p>
+            <p>Pris: 299 NOK</p>
+            <a href="#" class="buy-button">KJØP NÅ</a>
+        </div>
+    </div>
+</body>
+</html> 
