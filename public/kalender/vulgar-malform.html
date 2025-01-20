@@ -3,117 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VULGÆR MÅLFORM - TJRU</title>
+    <title>TJRU - KALENDER</title>
     <style>
         body {
             margin: 0;
             padding: 20px;
             background: #000;
             color: #fff;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
         }
-        
-        .article {
+
+        .articles {
             max-width: 800px;
-            margin: 40px auto;
+            margin: 0 auto;
+            display: grid;
+            gap: 40px;
         }
 
-        .main-image {
-            width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-        }
-
-        .article-content {
-            position: relative;
-            padding-bottom: 60px;
-        }
-
-        .portrait {
-            width: 150px;
-            height: auto;
-            position: absolute;
-            bottom: -15px;
-            right: 0;
-            margin: 0;
-            clip-path: inset(0 0 60px 0);
-        }
-
-        .article-links {
-            margin: 20px 0;
-            display: flex;
-            gap: 20px;
-            margin-right: 170px;
+        .article {
+            margin-bottom: 0;
         }
 
         .article-link {
-            display: inline-block;
-            padding: 15px 30px;
-            background: #bf953f;
-            color: #000;
+            display: block;
             text-decoration: none;
-            font-weight: bold;
         }
 
-        p {
-            margin: 15px 0;
-            line-height: 1.6;
-            font-size: 1.1em;
-            max-width: 65ch;
-            letter-spacing: 0.01em;
-        }
-
-        .animation-container {
-            position: absolute;
-            right: 20px;
-            bottom: 550px;
-            width: 50px;
-            height: 50px;
-            z-index: 10;
-        }
-
-        .spiker {
+        .article-image {
             width: 100%;
-            height: 100%;
-            animation: flip 2s linear infinite;
-            transform-style: preserve-3d;
+            height: auto;
+            filter: grayscale(30%) contrast(110%) brightness(90%);
         }
 
-        @keyframes flip {
-            0% { 
-                transform: rotate3d(1, 1, 0, 0deg); 
-            }
-            100% { 
-                transform: rotate3d(1, 1, 0, 360deg); 
-            }
+        .article-title {
+            color: gold;
+            margin: 10px 0;
+            font-size: 24px;
+        }
+
+        .article-date {
+            color: #666;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <div class="article">
-        <img src="/images/vulgar-malform.jpeg" alt="VULGÆR MÅLFORM" class="main-image">
-        
-        <div class="article-content">
-            <p>På en Askeladds vis plukker Arne med seg elementer til en multisensorisk beretning om frekvens, følelse og farge. Oppdalsrapperens tredje album er en leken selvgransking av et drømmende sinn. Bli med på en reise gjennom hardtslående, naken Hip Hop.</p>
+    <div class="articles">
+        <!-- Nyeste først -->
+        <div class="article">
+            <a href="SerieI.html" class="article-link">
+                <img src="../images/1.1.2.jpg" class="article-image" alt="Serie I">
+                <h2 class="article-title">Serie I</h2>
+                <div class="article-date">20. Januar 2025</div>
+            </a>
+        </div>
 
-            <p>Albumet handler om selvaksept, for å leve slik du ønsker gjennom alle livets ytterpunkter. Begge sider av hjernen, med hjertet og buken som følgesvenn. Leken i arbeidet, alvoret i spøken. Kreasjon hinsides kategorisering og barriere. Fantasi og realitet i vill forening.</p>
+        <div class="article">
+            <a href="vulgar-malform-artikkel.html" class="article-link">
+                <img src="../images/vulgar-malform.jpeg" class="article-image" alt="Vulgær Målform">
+                <h2 class="article-title">Vulgær Målform</h2>
+                <div class="article-date">15. Januar 2025</div>
+            </a>
+        </div>
 
-            <p>I rollen som både rapper og produsent skildrer Arne introspektive fortellinger om drømmens vilkår. I betraktninger av jeg-et, samfunnet, venner og fjerne oppstår nostalgiske toner om frykt og fremtidshåp. Du kan vente deg levende historiefortelling i et eksperimentelt lydunivers. Komplekst som det er enkelt.</p>
+        <!-- Plass til 3 artikler til -->
+        <div class="article coming-soon">
+            <!-- Placeholder for fremtidig artikkel -->
+        </div>
 
-            <p><strong>VULGÆR MÅLFORM</strong> er symfonien av rim bass, trommer, gatemusikanter, samples og støy. Et febrilsk jag etter sinnsro i nysgjerrighetens larm. Et evig ekspanderende univers; som aldri er stort nok, før det er for stort. Bli med inn i gråsonen av det gudfryktige nå.</p>
+        <div class="article coming-soon">
+            <!-- Placeholder for fremtidig artikkel -->
+        </div>
 
-            <div class="article-links">
-                <a href="https://open.spotify.com/album/2Gqlw2akFtGPtAid10FOBC" class="article-link">LYTT PÅ SPOTIFY</a>
-                <a href="https://www.opp.no/nyheter/i/1MXgee/rapper-paa-dialekt-i-splitter-nytt-album-det-er-saann-jeg-utrykker-meg-best" class="article-link">LES MER</a>
-            </div>
-
-            <div class="animation-container">
-                <img src="/images/spiker.png" alt="Spiker" class="spiker">
-            </div>
-
-            <img src="/images/artistportrettarne.jpeg" alt="Artistportrett Arne" class="portrait">
+        <div class="article coming-soon">
+            <!-- Placeholder for fremtidig artikkel -->
         </div>
     </div>
 </body>
