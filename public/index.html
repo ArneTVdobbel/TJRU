@@ -30,51 +30,69 @@
             background: transparent;
         }
 
+        /* TV-skjermen */
         #tv-link {
-            top: 35%;
-            left: 18%;
-            width: 300px;
-            height: 216px;
+            top: calc(35vh + 5%);
+            left: calc(20vw - 2%);
+            width: calc(20vw + 5%);
+            height: calc(25vh + 2%);
             border-radius: 10px;
         }
 
+        /* Bilderammen */
         #galleri-link {
-            top: 4%;
-            left: 3%;
-            width: 250px;
-            height: 280px;
+            top: calc(5vh + 2%);
+            left: calc(5vw - 2%);
+            width: calc(15vw + 5%);
+            height: calc(35vh + 2%);
         }
 
+        /* Kalenderen på veggen */
         #kalender-link {
-            top: 1%;
-            right: 48%;
-            width: 180px;
-            height: 200px;
+            top: calc(2vh + 1%);
+            right: calc(45vw + 2%);
+            width: calc(12vw + 2%);
+            height: calc(25vh + 2%);
             transform: rotate(-5deg);
         }
 
+        /* Katalogen på gulvet */
         #katalog-link {
-            bottom: 8%;
-            left: 2%;
-            width: 520px;
-            height: 293px;
+            bottom: calc(10vh - 2%);
+            left: calc(5vw - 3%);
+            width: calc(35vw + 5%);
+            height: calc(30vh + 5%);
         }
 
+        /* Kleshengeren */
         #klaer-link {
-            top: 8%;
-            right: 20%;
-            width: 276px;
+            top: calc(10vh - 2%);
+            right: calc(15vw + 5%);
+            width: calc(18vw + 2%);
             height: 90vh;
         }
 
+        /* Spaden */
         #spade-link {
-            position: absolute;
             right: 0;
-            top: 15%;
-            width: 60px;
-            height: 500px;
+            top: calc(35vh + 2%);
+            width: calc(5vw + 1%);
+            height: calc(50vh + 5%);
             z-index: 1000;
             background: rgba(255, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-size: contain;
+                background-position: top center;
+            }
+
+            .clickable-area {
+                /* Vi beholder de relative posisjonene på mobil */
+                width: calc(90vw) !important;
+                height: calc(15vh) !important;
+            }
         }
     </style>
 </head>
@@ -86,10 +104,10 @@
          onclick="window.location.href='GALLERI.html'">
     </div>
     <div id="kalender-link" class="clickable-area" 
-         onclick="window.location.href='KALENDER.html'">
+         onclick="window.location.href='kalender/vulgar-malform.html'">
     </div>
     <div id="katalog-link" class="clickable-area" 
-         onclick="window.location.href='https://open.spotify.com/album/2Gqlw2akFtGPtAid10FOBC'">
+         onclick="window.location.href='KATALOG.html'">
     </div>
     <div id="klaer-link" class="clickable-area" 
          onclick="window.location.href='SHOP.html'">
