@@ -20,7 +20,7 @@
         .clickable-area {
             position: absolute;
             cursor: pointer;
-            background: rgba(255, 0, 0, 0.2); /* Midlertidig synlig for testing */
+            background: transparent; /* Fjernet rød testfarge */
             transition: backdrop-filter 0.3s;
             border: none;
         }
@@ -28,60 +28,63 @@
         .clickable-area:hover {
             backdrop-filter: blur(3px);
             -webkit-backdrop-filter: blur(3px);
-            background: rgba(0, 255, 0, 0.2); /* Synlig hover for testing */
+            background: transparent; /* Fjernet grønn testfarge */
         }
 
-        /* TV-skjermen */
+        /* TV-skjermen - Justert for å følge TV-rammen nøyaktig */
         #tv-link {
-            top: 35%;
-            left: 18%;
-            width: 31.25vw;  /* 300px / 960px (standard viewport) */
-            height: 22.5vh;  /* 216px / 960px */
+            top: 32%;
+            left: 16%;
+            width: 33vw;
+            height: 24vh;
             transform-origin: center;
         }
 
-        /* Bilderammen */
+        /* Bilderammen - Justert for å dekke hele bildeserien */
         #galleri-link {
-            top: 4%;
-            left: 3%;
-            width: 26vw;     /* 250px / 960px */
-            height: 35vh;
+            top: 2%;
+            left: 2%;
+            width: 28vw;
+            height: 38vh;
             transform-origin: top left;
         }
 
-        /* Kalenderen på veggen */
+        /* Kalenderen - Justert for å følge kalenderen nøyaktig */
         #kalender-link {
             top: 1%;
-            right: 48%;
-            width: 18.75vw;  /* 180px / 960px */
-            height: 25vh;
+            right: 46%;
+            width: 20vw;
+            height: 28vh;
             transform: rotate(-5deg);
+            transform-origin: top center;
         }
 
-        /* Katalogen på gulvet */
+        /* Katalogen - Justert for å dekke hele boken */
         #katalog-link {
-            bottom: 8%;
+            bottom: 6%;
             left: 2%;
-            width: 54.17vw;  /* 520px / 960px */
-            height: 35vh;
+            width: 52vw;
+            height: 32vh;
+            transform-origin: bottom left;
         }
 
         /* Blå lue og figur - Shop */
         #shop-link {
-            top: 8%;
-            right: 15%;          /* Justert mot venstre for å dekke mer av figuren */
-            width: 35vw;         /* Økt bredde for å dekke hele figuren */
-            height: 85vh;        /* Justert høyde for å dekke fra lue til bukse */
-            transform-origin: top right;  /* Rotasjonspunkt fra toppen av luen */
+            top: 6%;
+            right: 12%;
+            width: 38vw;
+            height: 88vh;
+            transform-origin: top right;
         }
 
-        /* Spill-element */
+        /* Spill-element - Justert for bedre presisjon */
         #spill-link {
             right: 0;
-            top: 35%;
-            width: 6.25vw;   /* 60px / 960px */
-            height: 52.08vh; /* 500px / 960px */
+            top: 32%;
+            width: 8vw;
+            height: 56vh;
             z-index: 1000;
+            transform-origin: center right;
         }
 
         @media (max-aspect-ratio: 1/1) {
