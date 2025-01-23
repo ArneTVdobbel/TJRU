@@ -85,28 +85,28 @@
 
         @media (max-aspect-ratio: 1/1) {
             body {
-                background-size: 200% 110%; /* Justert for bedre dekning */
-                background-position: 45% center; /* Litt forskjøvet for bedre sentrering */
+                background-size: auto 100vh; /* Eksakt vertikal dekning */
+                background-position: 45% top;
                 height: 100vh;
                 min-height: 100vh;
-                overflow-y: hidden;
+                overflow: hidden;
             }
 
             .clickable-area {
                 position: fixed;
                 transform-origin: top left;
-                transform: scale(calc(200vw / 960));
+                transform: scale(calc(180vw / 960));
             }
         }
 
         @media (max-width: 480px) {
             body {
-                background-size: 280% 120%;
-                background-position: 40% center;
+                background-size: auto 100vh; /* Beholder eksakt vertikal dekning */
+                background-position: 40% top;
             }
 
             .clickable-area {
-                transform: scale(calc(280vw / 960));
+                transform: scale(calc(220vw / 960));
             }
         }
     </style>
