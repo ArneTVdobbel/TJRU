@@ -37,7 +37,7 @@
             left: 18%;
             width: 31.25vw;  /* 300px / 960px (standard viewport) */
             height: 22.5vh;  /* 216px / 960px */
-            border-radius: 1vw;
+            transform-origin: center;
         }
 
         /* Bilderammen */
@@ -46,6 +46,7 @@
             left: 3%;
             width: 26vw;     /* 250px / 960px */
             height: 35vh;
+            transform-origin: top left;
         }
 
         /* Kalenderen på veggen */
@@ -84,28 +85,28 @@
 
         @media (max-aspect-ratio: 1/1) {
             body {
-                background-size: 180% 120%; /* Økt både bredde og høyde for bedre dekning */
+                background-size: 200% 110%; /* Justert for bedre dekning */
+                background-position: 45% center; /* Litt forskjøvet for bedre sentrering */
                 height: 100vh;
                 min-height: 100vh;
-                background-position: center center;
                 overflow-y: hidden;
             }
 
             .clickable-area {
                 position: fixed;
                 transform-origin: top left;
-                transform: scale(calc(180vw / 960));
+                transform: scale(calc(200vw / 960));
             }
         }
 
         @media (max-width: 480px) {
             body {
-                background-size: 250% 130%; /* Enda mer zoom, men beholder mer av bredden */
-                background-position: center center;
+                background-size: 280% 120%;
+                background-position: 40% center;
             }
 
             .clickable-area {
-                transform: scale(calc(250vw / 960));
+                transform: scale(calc(280vw / 960));
             }
         }
     </style>
