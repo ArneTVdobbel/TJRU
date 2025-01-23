@@ -14,6 +14,7 @@
             background-repeat: no-repeat;
             background-size: cover;
             position: relative;
+            overflow: hidden; /* Hindrer scrolling */
         }
 
         .clickable-area {
@@ -36,7 +37,7 @@
             left: 18%;
             width: 31.25vw;  /* 300px / 960px (standard viewport) */
             height: 22.5vh;  /* 216px / 960px */
-            border-radius: 10px;
+            border-radius: 1vw;
         }
 
         /* Bilderammen */
@@ -44,7 +45,7 @@
             top: 4%;
             left: 3%;
             width: 26vw;     /* 250px / 960px */
-            height: 29.17vh; /* 280px / 960px */
+            height: 35vh;
         }
 
         /* Kalenderen på veggen */
@@ -52,7 +53,7 @@
             top: 1%;
             right: 48%;
             width: 18.75vw;  /* 180px / 960px */
-            height: 20.83vh; /* 200px / 960px */
+            height: 25vh;
             transform: rotate(-5deg);
         }
 
@@ -61,7 +62,7 @@
             bottom: 8%;
             left: 2%;
             width: 54.17vw;  /* 520px / 960px */
-            height: 30.52vh; /* 293px / 960px */
+            height: 35vh;
         }
 
         /* Blå lue - Shop */
@@ -69,7 +70,7 @@
             top: 8%;
             right: 20%;
             width: 28.75vw;  /* 276px / 960px */
-            height: 90vh;
+            height: 80vh;
         }
 
         /* Spill-element */
@@ -83,24 +84,28 @@
 
         @media (max-aspect-ratio: 1/1) {
             body {
-                background-size: 100% auto; /* Strekker bakgrunnen horisontalt */
+                background-size: 180% 120%; /* Økt både bredde og høyde for bedre dekning */
                 height: 100vh;
                 min-height: 100vh;
-                background-position: top center;
+                background-position: center center;
+                overflow-y: hidden;
             }
 
             .clickable-area {
                 position: fixed;
                 transform-origin: top left;
-                transform: scale(calc(100vw / 960));
+                transform: scale(calc(180vw / 960));
             }
         }
 
-        /* For ekstra smale skjermer */
         @media (max-width: 480px) {
             body {
-                background-size: 120% auto; /* Litt ekstra bredde for bedre proporsjon */
-                background-position: center top;
+                background-size: 250% 130%; /* Enda mer zoom, men beholder mer av bredden */
+                background-position: center center;
+            }
+
+            .clickable-area {
+                transform: scale(calc(250vw / 960));
             }
         }
     </style>
