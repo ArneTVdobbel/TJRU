@@ -83,15 +83,24 @@
 
         @media (max-aspect-ratio: 1/1) {
             body {
-                background-size: contain;
-                height: auto;
+                background-size: 100% auto; /* Strekker bakgrunnen horisontalt */
+                height: 100vh;
                 min-height: 100vh;
+                background-position: top center;
             }
 
             .clickable-area {
                 position: fixed;
                 transform-origin: top left;
                 transform: scale(calc(100vw / 960));
+            }
+        }
+
+        /* For ekstra smale skjermer */
+        @media (max-width: 480px) {
+            body {
+                background-size: 120% auto; /* Litt ekstra bredde for bedre proporsjon */
+                background-position: center top;
             }
         }
     </style>
