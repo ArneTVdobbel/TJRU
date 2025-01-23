@@ -3,415 +3,707 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TJRU - CHUVEL</title>
-    
-    <!-- Den Rustne Spikern som favicon -->
-    <link rel="icon" type="image/png" href="spiker.png">
+    <title>TJRU - SPILL</title>
     <style>
-        /* Grunnleggende stiler */
         body {
             margin: 0;
             padding: 0;
-            min-height: 100vh;
             background: #000;
-            color: #fff;
-        }
-
-        #game-area {
-            width: 100%;
-            height: calc(100vh - 100px);
-            position: relative;
-            overflow: hidden;
-            background: #1a1a1a;
-            margin-top: 100px;
-        }
-
-        /* Vei med fire filer */
-        .road {
-            position: absolute;
-            bottom: 150px;  /* Løftet opp */
-            left: 0;
-            width: 100%;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .road-lane {
-            flex: 1;
-            background: #2a2a2a;
-            border-top: 2px solid #3a3a3a;
-            border-bottom: 2px solid #222;
-            position: relative;
-        }
-
-        /* Animerte striper */
-        .road-lane::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: repeating-linear-gradient(
-                to right,
-                rgba(255,215,0,0.15) 0px,      /* Start med gul */
-                rgba(255,215,0,0.15) 120px,    /* Lang gul stripe */
-                transparent 120px,              /* Mellomrom */
-                transparent 130px,              /* Mellomrom */
-                rgba(255,255,255,0.3) 130px,   /* Kort hvit stripe */
-                rgba(255,255,255,0.3) 150px,   /* Hvit stripe slutt */
-                transparent 150px,              /* Mellomrom */
-                transparent 200px              /* Full sekvens slutt */
-            );
-            animation: moveStripes 3s linear infinite;
-        }
-
-        @keyframes moveStripes {
-            from { transform: translateX(0); }
-            to { transform: translateX(-200px); }
-        }
-
-        /* Chu med hjul */
-        #shovel-player {
-            position: absolute;
-            width: 120px;
-            height: 80px;
-            bottom: 20%;
-            left: 15%;
-            z-index: 10;
-            transition: transform 0.3s ease-out;
-        }
-
-        /* Rød kropp */
-        .shovel-body {
-            position: absolute;
-            width: 100%;
-            height: 40px;
-            background: #ff3333;
-            border-radius: 8px;
-            top: 0;
-            z-index: 3;
-        }
-
-        /* Gul spade - OPPDATERT */
-        .shovel-front {
-            position: absolute;
-            width: 60px;          /* Smalere bredde */
-            height: 100px;        /* Beholder høyden */
-            background: #FFD700;
-            right: -90px;
-            top: -30px;
-            transform: skew(-25deg);
-            border-radius: 5px;
-            box-shadow: 
-                inset -2px 2px 10px rgba(255,255,255,0.4),
-                inset 2px -2px 10px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-
-        /* Hjul */
-        .wheel {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: #333;
-            border-radius: 50%;
-            bottom: -20px;
-            border: 5px solid #111;
-            animation: wheel-spin 2s linear infinite;
-            z-index: 4;
-        }
-
-        .wheel.front { right: 10px; }
-        .wheel.back { left: 10px; }
-
-        @keyframes wheel-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Start-skjerm */
-        .start-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
-            transition: opacity 0.5s;
+            min-height: 100vh;
+        }
+        
+        #game-container {
+            width: 800px;
+            height: 600px;
+            position: relative;
+            background: #222;
+            overflow: hidden;  /* For animerte bakgrunner */
         }
 
-        .start-content {
-            text-align: center;
-            color: #fff;
-        }
-
-        .start-hint {
-            margin-top: 20px;
-            color: #FFD700;
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
-        }
-
-        /* Øyne-stiler */
-        .eyes {
+        #score {
             position: absolute;
-            top: -15px;
-            left: 20px;
-            z-index: 4;
-            display: flex;
-            gap: 15px;  /* Mellomrom mellom øynene */
+            top: 20px;
+            right: 20px;
+            color: gold;
+            font-size: 24px;
         }
 
-        .eye {
-            width: 8px;          /* Litt mindre øyne */
-            height: 8px;
-            background: #111;
-            border-radius: 50%;
-            border: 2px solid #000;
-            box-shadow: 0 0 2px rgba(0,0,0,0.5);
-        }
-
-        /* Forgrunn med gress */
-        .foreground {
+        .road-lines {
             position: absolute;
-            bottom: 0;
-            left: 0;
             width: 100%;
-            height: 150px;
-            background: linear-gradient(
-                to bottom,
-                #2d5a27,
-                #3a7233
-            );
-            box-shadow: 0 -10px 20px rgba(0,0,0,0.3);
+            height: 300px;
+            bottom: 100px;
         }
 
-        /* Gressdetaljer */
-        .grass-details {
+        .road-line {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            background: repeating-linear-gradient(
-                80deg,
-                transparent 0,
-                transparent 2px,
-                #4a8940 2px,
-                #4a8940 4px
-            );
+            width: 100px;  /* Redusert til 1/6 av container-bredden */
+            height: 2px;
+            background: gold;
             opacity: 0.5;
         }
 
-        /* Hindring-stil */
-        .obstacle {
-            width: 40px;
-            height: 40px;
-            background: #666;
-            border-radius: 50%;
+        /* Øverste rad */
+        .line1 { left: 800px; bottom: 240px; }
+        .line1b { left: 850px; bottom: 240px; }
+        .line1c { left: 900px; bottom: 240px; }
+        .line1d { left: 950px; bottom: 240px; }
+        .line1e { left: 1000px; bottom: 240px; }
+        .line1f { left: 1050px; bottom: 240px; }
+
+        /* Andre rad */
+        .line2 { left: 800px; bottom: 180px; }
+        .line2b { left: 850px; bottom: 180px; }
+        .line2c { left: 900px; bottom: 180px; }
+        .line2d { left: 950px; bottom: 180px; }
+        .line2e { left: 1000px; bottom: 180px; }
+        .line2f { left: 1050px; bottom: 180px; }
+
+        /* Tredje rad */
+        .line3 { left: 800px; bottom: 120px; }
+        .line3b { left: 850px; bottom: 120px; }
+        .line3c { left: 900px; bottom: 120px; }
+        .line3d { left: 950px; bottom: 120px; }
+        .line3e { left: 1000px; bottom: 120px; }
+        .line3f { left: 1050px; bottom: 120px; }
+
+        /* Nederste rad */
+        .line4 { left: 800px; bottom: 60px; }
+        .line4b { left: 850px; bottom: 60px; }
+        .line4c { left: 900px; bottom: 60px; }
+        .line4d { left: 950px; bottom: 60px; }
+        .line4e { left: 1000px; bottom: 60px; }
+        .line4f { left: 1050px; bottom: 60px; }
+
+        #grass {
             position: absolute;
-            z-index: 5;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background: #1a472a;
         }
 
-        /* Score display */
-        .score-display {
-            position: fixed;
-            top: 20px;
+        #cart {
+            position: absolute;
+            bottom: 150px;
+            left: 100px;
+            width: 100px;
+            height: 50px;
+        }
+
+        .cart-body {
+            width: 60px;
+            height: 30px;
+            background: #ff4444;
+            position: absolute;
+            bottom: 0px;
+        }
+
+        .cart-wheel {
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -10px;
+        }
+
+        .wheel1 { left: 10px; }
+        .wheel2 { left: 40px; }
+
+        .cart-spade {
+            width: 40px;
+            height: 60px;
+            background: gold;
+            position: absolute;
+            left: 60px;
+            bottom: -10px;
+            transform: skew(-20deg);
+        }
+
+        #background {
+            position: absolute;
+            top: -300px;  /* Flyttet fra -400px til -300px */
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(
+                to bottom,
+                #000000 0%,
+                #1a1a2e 20%,
+                #1a1a2e 40%,
+                #222 100%
+            );
+        }
+
+        .buildings {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 300px;
+            background-image: 
+                repeating-linear-gradient(
+                    to right,
+                    transparent 0,
+                    transparent 40px,
+                    #111 40px,
+                    #111 80px,
+                    transparent 80px,
+                    transparent 120px
+                );
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 300px;  /* Økt høyden fra 200px til 300px */
+            background-image: 
+                radial-gradient(1px 1px at 50px 50px, white, transparent),
+                radial-gradient(1px 1px at 100px 30px, white, transparent),
+                radial-gradient(1px 1px at 150px 70px, white, transparent),
+                radial-gradient(1px 1px at 200px 40px, white, transparent);
+            opacity: 0.5;
+        }
+
+        /* Endre hindring-stilen til politibil */
+        .obstacle {
+            position: absolute;
+            width: 80px;  /* Litt lengre enn Chu */
+            height: 30px;  /* Samme høyde som Chu */
+            background: #1a1a2e;  /* Mørkeblå politibil */
+            border-radius: 5px;
+        }
+
+        /* Politibil-detaljer */
+        .obstacle::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: 10px;
+            width: 15px;
+            height: 8px;
+            background: #ff0000;  /* Rød sirene */
+            border-radius: 5px;
+            animation: blink 0.5s infinite;  /* Blinkende sirene */
+        }
+
+        .obstacle::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: 30px;
+            width: 15px;
+            height: 8px;
+            background: #0000ff;  /* Blå sirene */
+            border-radius: 5px;
+            animation: blink 0.5s infinite 0.25s;  /* Blinkende sirene med forsinkelse */
+        }
+
+        /* Sirene-animasjon */
+        @keyframes blink {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Politibil-hjul */
+        .obstacle .wheel {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #000;
+            border-radius: 50%;
+            bottom: -5px;
+        }
+
+        .obstacle .wheel.front { left: 10px; }
+        .obstacle .wheel.back { right: 10px; }
+
+        /* Hull i veien */
+        .pothole {
+            position: absolute;
+            width: 120px;
+            height: 40px;
+            background: linear-gradient(
+                45deg,
+                #000000 0%,
+                #1a1a1a 25%,
+                #000000 50%,
+                #1a1a1a 75%,
+                #000000 100%
+            );
+            border-radius: 15px;
+            border: 3px solid #333;
+            overflow: hidden;
+            transform: perspective(500px) rotateX(30deg);
+        }
+
+        /* Dybdeeffekt */
+        .pothole::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, 
+                    rgba(40,40,40,0.8) 0%, 
+                    rgba(0,0,0,0.9) 60%),
+                radial-gradient(circle at 70% 70%, 
+                    rgba(30,30,30,0.6) 0%, 
+                    rgba(0,0,0,0.8) 60%);
+            border-radius: 12px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+        }
+
+        /* Asfaltsprekker og tekstur */
+        .pothole::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: 
+                linear-gradient(45deg, transparent 45%, #222 46%, #222 54%, transparent 55%) 0 0 / 20px 20px,
+                linear-gradient(-45deg, transparent 45%, #222 46%, #222 54%, transparent 55%) 0 0 / 20px 20px,
+                radial-gradient(circle at 50% 50%, 
+                    rgba(50,50,50,0.3) 0%, 
+                    rgba(0,0,0,0) 60%);
+            opacity: 0.4;
+            border-radius: 15px;
+        }
+
+        /* Ekstra skyggeeffekter */
+        .pothole {
+            box-shadow: 
+                inset 0 10px 20px rgba(0,0,0,0.9),
+                inset 0 -10px 20px rgba(0,0,0,0.9),
+                inset 10px 0 15px rgba(0,0,0,0.8),
+                inset -10px 0 15px rgba(0,0,0,0.8),
+                0 5px 10px rgba(0,0,0,0.7);
+        }
+
+        /* Container for oppsamlede politibiler */
+        #collected-cars {
+            position: absolute;
+            top: 120px;
             right: 20px;
-            font-size: 24px;
-            color: #FFD700;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            z-index: 1000;
+            width: 120px;  /* Endret tilbake til 120px for 3 biler */
+            height: 40px;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid gold;
+            border-radius: 5px;
+        }
+
+        /* Fjern den 4. bil-posisjonen */
+        .collected-car:nth-child(1) { left: 10px; }
+        .collected-car:nth-child(2) { left: 45px; }
+        .collected-car:nth-child(3) { left: 80px; }
+
+        /* Endre ball-stilen til å matche politibil */
+        .cart-ball {
+            position: absolute;
+            width: 30px;
+            height: 20px;
+            background: #1a1a2e;
+            border-radius: 5px;
+            left: 15px;
+            top: 20px;  /* Endret fra -25px til 20px */
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            opacity: 0;
+        }
+
+        /* Sirener på ballen */
+        .cart-ball::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            right: 5px;
+            width: 8px;
+            height: 4px;
+            background: #ff0000;  /* Rød sirene */
+            border-radius: 3px;
+            animation: blink 0.5s infinite;
+        }
+
+        .cart-ball::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            right: 15px;
+            width: 8px;
+            height: 4px;
+            background: #0000ff;  /* Blå sirene */
+            border-radius: 3px;
+            animation: blink 0.5s infinite 0.25s;
+        }
+
+        /* Hjul på ballen */
+        .cart-ball .ball-wheel {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #000;
+            border-radius: 50%;
+            bottom: -3px;
+        }
+
+        .cart-ball .ball-wheel.front { left: 5px; }
+        .cart-ball .ball-wheel.back { right: 5px; }
+
+        /* Game Over skjerm */
+        #game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            z-index: 100;
+        }
+
+        #game-over h2 {
+            color: red;
+            font-size: 32px;
+            margin: 0 0 20px 0;
+        }
+
+        #game-over button {
+            background: gold;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <div id="game-area">
-        <div class="road">
-            <div class="road-lane"></div>
-            <div class="road-lane"></div>
-            <div class="road-lane"></div>
-            <div class="road-lane"></div>
+    <div id="game-container">
+        <div id="background">
+            <div class="buildings"></div>
+            <div class="stars"></div>
         </div>
+        <div id="score">Score: 0</div>
+        <div class="road-lines">
+            <!-- Øverste rad -->
+            <div class="road-line line1"></div>
+            <div class="road-line line1b"></div>
+            <div class="road-line line1c"></div>
+            <div class="road-line line1d"></div>
+            <div class="road-line line1e"></div>
+            <div class="road-line line1f"></div>
 
-        <!-- Legg til forgrunn -->
-        <div class="foreground">
-            <div class="grass-details"></div>
+            <!-- Andre rad -->
+            <div class="road-line line2"></div>
+            <div class="road-line line2b"></div>
+            <div class="road-line line2c"></div>
+            <div class="road-line line2d"></div>
+            <div class="road-line line2e"></div>
+            <div class="road-line line2f"></div>
+
+            <!-- Tredje rad -->
+            <div class="road-line line3"></div>
+            <div class="road-line line3b"></div>
+            <div class="road-line line3c"></div>
+            <div class="road-line line3d"></div>
+            <div class="road-line line3e"></div>
+            <div class="road-line line3f"></div>
+
+            <!-- Nederste rad -->
+            <div class="road-line line4"></div>
+            <div class="road-line line4b"></div>
+            <div class="road-line line4c"></div>
+            <div class="road-line line4d"></div>
+            <div class="road-line line4e"></div>
+            <div class="road-line line4f"></div>
         </div>
-
-        <div id="shovel-player">
-            <div class="eyes">
-                <div class="eye"></div>
-                <div class="eye"></div>
-            </div>
-            <div class="shovel-body"></div>
-            <div class="shovel-front"></div>
-            <div class="wheel front"></div>
-            <div class="wheel back"></div>
+        <div id="grass"></div>
+        <div id="cart">
+            <div class="cart-body"></div>
+            <div class="cart-wheel wheel1"></div>
+            <div class="cart-wheel wheel2"></div>
+            <div class="cart-spade"></div>
+            <div class="cart-ball"></div>
         </div>
     </div>
 
-    <div class="score-display">Score: <span id="score">0</span></div>
+    <div id="game-over">
+        <h2>Game Over</h2>
+        <button>Play Again</button>
+    </div>
 
     <script>
-        const player = document.getElementById('shovel-player');
-        const scoreDisplay = document.getElementById('score');
-        let currentLane = 0;
-        let gameStarted = false;
-        let score = 0;
-        let gameSpeed = 5;
-        let obstacles = [];
-
-        // Start-skjerm
-        const startScreen = document.createElement('div');
-        startScreen.className = 'start-screen';
-        startScreen.innerHTML = `
-            <div class="start-content">
-                <h2>CHUVEL</h2>
-                <p>Bruk piltaster eller klikk for å styre</p>
-                <div class="start-hint">Trykk piltast eller klikk for å starte</div>
-            </div>
-        `;
-        document.getElementById('game-area').appendChild(startScreen);
-
-        // Start spillet ved klikk
-        startScreen.addEventListener('click', startGame);
-
-        // Opprett hindringer
-        function createObstacle() {
-            const lane = Math.floor(Math.random() * 4) * -1;  // Random lane (0 til -3)
-            const obstacle = {
-                x: window.innerWidth,  // Start fra høyre side
-                lane: lane,
-                width: 40,
-                height: 40,
-                speed: gameSpeed,
-                element: document.createElement('div')
-            };
-            
-            obstacle.element.className = 'obstacle';
-            obstacle.element.style.position = 'absolute';
-            obstacle.element.style.right = '0';
-            document.getElementById('game-area').appendChild(obstacle.element);
-            obstacles.push(obstacle);
-        }
-
-        // Sjekk kollisjon
-        function checkCollision(obstacle) {
-            const playerBounds = player.getBoundingClientRect();
-            const obstacleBounds = obstacle.element.getBoundingClientRect();
-            
-            return !(playerBounds.right < obstacleBounds.left || 
-                    playerBounds.left > obstacleBounds.right || 
-                    playerBounds.bottom < obstacleBounds.top || 
-                    playerBounds.top > obstacleBounds.bottom);
-        }
-
-        // Game loop
-        function gameLoop() {
-            if (!gameStarted) return;
-            
-            // Flytt hindringer
-            obstacles.forEach((obstacle, index) => {
-                obstacle.x -= obstacle.speed;
-                obstacle.element.style.transform = 
-                    `translate(${-obstacle.x}px, ${obstacle.lane * 100}px)`;
-                
-                // Sjekk kollisjon
-                if (checkCollision(obstacle)) {
-                    gameOver();
-                }
-                
-                // Fjern hindringer som er ute av skjermen
-                if (obstacle.x > window.innerWidth + 100) {
-                    obstacle.element.remove();
-                    obstacles.splice(index, 1);
-                    score += 10;  // Poeng for hver hindring som passeres
-                    scoreDisplay.textContent = score;
-                }
+        const gameContainer = document.getElementById('game-container');
+        const cart = document.getElementById('cart');
+        const roadLines = document.querySelectorAll('.road-line');
+        const buildings = document.querySelector('.buildings');
+        const stars = document.querySelector('.stars');
+        
+        // Vei-animasjon
+        function animateRoad() {
+            roadLines.forEach(line => {
+                let position = parseInt(line.style.left || 0);
+                position -= 2;
+                if (position <= -100) position = 800;
+                line.style.left = position + 'px';
             });
-            
-            // Opprett nye hindringer
-            if (Math.random() < 0.02) {  // 2% sjanse per frame
-                createObstacle();
-            }
-            
-            requestAnimationFrame(gameLoop);
+            requestAnimationFrame(animateRoad);
         }
 
-        // Game over
-        function gameOver() {
-            gameStarted = false;
-            alert(`Game Over! Score: ${score}`);
-            location.reload();  // Restart spillet
+        // Bakgrunns-animasjon
+        let buildingPosition = 0;
+        let starPosition = 0;
+
+        function animateBackground() {
+            // Beveg bygninger saktere enn veien
+            buildingPosition -= 0.5;
+            if (buildingPosition <= -120) buildingPosition = 0;
+            buildings.style.backgroundPosition = `${buildingPosition}px 0`;
+
+            // Beveg stjerner enda saktere (parallax effekt)
+            starPosition -= 0.1;
+            if (starPosition <= -120) starPosition = 0;
+            stars.style.backgroundPosition = `${starPosition}px 0`;
+
+            requestAnimationFrame(animateBackground);
         }
 
-        // Start game
-        function startGame() {
-            if (gameStarted) return;
-            gameStarted = true;
-            startScreen.style.opacity = '0';
-            setTimeout(() => startScreen.remove(), 500);
-            moveToLane(0);
-            gameLoop();  // Start game loop
-        }
+        // Chu bevegelse
+        const lanes = [115, 175, 235, 295];
+        let currentLane = 0;
+        
+        // Legg til en bevegelsesblokker
+        let isMoving = false;
 
-        // Tastaturkontroller
-        document.addEventListener('keydown', (e) => {
-            if (!gameStarted) {
-                if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-                    startGame();
+        // Oppdater handleKeydown-funksjonen
+        function handleKeydown(e) {
+            if (!isMoving) {  // Sjekk om Chu allerede er i bevegelse
+                if (e.key === 'ArrowUp' && currentLane < 3) {
+                    isMoving = true;
+                    currentLane++;
+                    cart.style.bottom = lanes[currentLane] + 'px';
+                    
+                    // Tillat ny bevegelse etter 100ms
+                    setTimeout(() => {
+                        isMoving = false;
+                    }, 100);
                 }
-                return;
+                if (e.key === 'ArrowDown' && currentLane > 0) {
+                    isMoving = true;
+                    currentLane--;
+                    cart.style.bottom = lanes[currentLane] + 'px';
+                    
+                    // Tillat ny bevegelse etter 100ms
+                    setTimeout(() => {
+                        isMoving = false;
+                    }, 100);
+                }
             }
-
-            if (e.key === 'ArrowUp' && currentLane > -3) {  // Kan gå opp til lane -3
-                currentLane--;
-                moveToLane(currentLane);
-                console.log('Current lane:', currentLane);  // Debug
-            } else if (e.key === 'ArrowDown' && currentLane < 0) {  // Kan gå ned til lane 0
-                currentLane++;
-                moveToLane(currentLane);
-                console.log('Current lane:', currentLane);  // Debug
-            }
-        });
-
-        // Touch/klikk-kontroller
-        const gameArea = document.getElementById('game-area');
-        gameArea.addEventListener('click', (e) => {
-            if (!gameStarted) return;
-            
-            const rect = gameArea.getBoundingClientRect();
-            const clickY = e.clientY - rect.top;
-            const halfHeight = rect.height / 2;
-
-            if (clickY < halfHeight && currentLane > -3) {
-                currentLane--;
-                moveToLane(currentLane);
-            } else if (clickY >= halfHeight && currentLane < 0) {
-                currentLane++;
-                moveToLane(currentLane);
-            }
-        });
-
-        function moveToLane(lane) {
-            const laneHeight = document.querySelector('.road-lane').offsetHeight;
-            const newY = lane * laneHeight;  // Negative lanes gir negativ Y-posisjon
-            player.style.transform = `translateY(${newY}px)`;
-            console.log('Moving to lane:', lane, 'Position:', newY); // Debug
         }
+
+        // Start i nederste fil
+        cart.style.bottom = lanes[0] + 'px';
+        
+        // Hindring-logikk
+        function createObstacle() {
+            const obstacle = document.createElement('div');
+            obstacle.className = 'obstacle';
+            
+            // Legg til hjul
+            const frontWheel = document.createElement('div');
+            frontWheel.className = 'wheel front';
+            const backWheel = document.createElement('div');
+            backWheel.className = 'wheel back';
+            
+            obstacle.appendChild(frontWheel);
+            obstacle.appendChild(backWheel);
+            
+            // Velg tilfeldig fil
+            const laneIndex = Math.floor(Math.random() * 4);
+            obstacle.style.bottom = lanes[laneIndex] + 'px';
+            
+            // Velg tilfeldig hastighet mellom 2 og 5
+            const speed = Math.random() * 3 + 2;
+            
+            obstacle.style.left = '800px';
+            gameContainer.appendChild(obstacle);
+            
+            function moveObstacle() {
+                const position = parseInt(obstacle.style.left);
+                if (position < -100) {
+                    obstacle.remove();
+                } else {
+                    // Beveg politibilen rett fram med konstant hastighet
+                    obstacle.style.left = (position - speed) + 'px';
+                    
+                    // Enkel kollisjon med hull - kjør rett i dem
+                    const potholes = document.querySelectorAll('.pothole');
+                    for (let pothole of potholes) {
+                        const potholeRect = pothole.getBoundingClientRect();
+                        const obstacleRect = obstacle.getBoundingClientRect();
+                        
+                        if (obstacleRect.left < potholeRect.right && 
+                            obstacleRect.right > potholeRect.left &&
+                            Math.abs(obstacleRect.bottom - potholeRect.bottom) < 20) {
+                            obstacle.remove();
+                            return;
+                        }
+                    }
+                    
+                    checkCollision(obstacle);
+                    requestAnimationFrame(moveObstacle);
+                }
+            }
+            
+            moveObstacle();
+        }
+
+        // Lag hull kontinuerlig
+        function startPotholeGeneration() {
+            if (collectedCars === 3) {  // Bare lag hull når vi har 3 biler
+                createPothole();
+            }
+            setTimeout(startPotholeGeneration, 3000); // Lengre intervall
+        }
+
+        let collectedCars = 0;
+        let score = 0;
+        const scoreElement = document.getElementById('score');
+        
+        // Legg til container for oppsamlede biler
+        const collectedContainer = document.createElement('div');
+        collectedContainer.id = 'collected-cars';
+        gameContainer.appendChild(collectedContainer);
+
+        // Legg til ball på skuffen med hjul
+        const cartBall = document.createElement('div');
+        cartBall.className = 'cart-ball';
+        const frontWheel = document.createElement('div');
+        frontWheel.className = 'ball-wheel front';
+        const backWheel = document.createElement('div');
+        backWheel.className = 'ball-wheel back';
+        cartBall.appendChild(frontWheel);
+        cartBall.appendChild(backWheel);
+        cart.querySelector('.cart-spade').appendChild(cartBall);
+
+        // Kollisjonsdeteksjon
+        function checkCollision(obstacle) {
+            const cartRect = cart.getBoundingClientRect();
+            const obstacleRect = obstacle.getBoundingClientRect();
+            
+            const sideCollision = cartRect.left < obstacleRect.right && 
+                                cartRect.right > obstacleRect.left &&
+                                Math.abs(cartRect.bottom - obstacleRect.bottom) < 10;
+            
+            if (sideCollision) {
+                if (collectedCars < 3) {  // Maks 3 biler
+                    const collectedCar = document.createElement('div');
+                    collectedCar.className = 'collected-car';
+                    collectedContainer.appendChild(collectedCar);
+                    collectedCars++;
+                    
+                    cartBall.style.opacity = '1';
+                    cartBall.style.transform = `scale(${1 + (collectedCars * 0.3)})`;  // Justert skalering
+                    
+                    obstacle.remove();
+                    
+                    if (collectedCars === 3) {
+                        createPothole();  // Lag hull når vi har 3 biler
+                    }
+                } else {
+                    gameOver();  // Game over ved forsøk på å samle en 4. bil
+                }
+            }
+        }
+
+        function createPothole() {
+            const pothole = document.createElement('div');
+            pothole.className = 'pothole';
+            
+            // Velg tilfeldig fil
+            const laneIndex = Math.floor(Math.random() * 4);
+            pothole.style.bottom = lanes[laneIndex] + 'px';
+            pothole.style.left = '800px';
+            
+            gameContainer.appendChild(pothole);
+            
+            function movePothole() {
+                const position = parseInt(pothole.style.left);
+                if (position < -150) {
+                    pothole.remove();
+                } else {
+                    pothole.style.left = (position - 3) + 'px';
+                    
+                    const potholeRect = pothole.getBoundingClientRect();
+                    const cartRect = cart.getBoundingClientRect();
+                    
+                    // Sjekk om Chu treffer hullet fra hvilken som helst vinkel
+                    if (cartRect.left < potholeRect.right && 
+                        cartRect.right > potholeRect.left &&
+                        Math.abs(potholeRect.bottom - cartRect.bottom) < 10) {
+                        
+                        // Bare fyll hullet hvis vi treffer med skuffen og har 3 biler
+                        const spadeCollision = Math.abs(cartRect.right - potholeRect.left) < 30;
+                        
+                        if (spadeCollision && collectedCars === 3) {
+                            // Fyll hullet med 3 biler
+                            score += 100;
+                            scoreElement.textContent = `Score: ${score}`;
+                            pothole.remove();
+                            
+                            collectedContainer.innerHTML = '';
+                            collectedCars = 0;
+                            
+                            cartBall.style.opacity = '0';
+                            cartBall.style.transform = 'scale(1)';
+                        } else {
+                            // Game over hvis man treffer hullet på noen annen måte
+                            gameOver();
+                            return;
+                        }
+                    }
+                    
+                    requestAnimationFrame(movePothole);
+                }
+            }
+            
+            movePothole();
+        }
+
+        function gameOver() {
+            // Stopp alle animasjoner og spillmekanikker
+            const gameOverScreen = document.createElement('div');
+            gameOverScreen.id = 'game-over';
+            gameOverScreen.innerHTML = `
+                <h2>Game Over!</h2>
+                <p>Score: ${score}</p>
+                <button onclick="location.reload()">Prøv igjen</button>
+            `;
+            gameContainer.appendChild(gameOverScreen);
+            gameOverScreen.style.display = 'block';
+            
+            // Stopp spillet
+            document.removeEventListener('keydown', handleKeydown);
+            clearInterval(obstacleInterval);
+        }
+
+        // Lagre interval ID for å kunne stoppe det
+        const obstacleInterval = setInterval(createObstacle, 2000);
+
+        document.addEventListener('keydown', handleKeydown);
+
+        // Start alle animasjoner
+        animateRoad();
+        animateBackground();
     </script>
 </body>
 </html> 
