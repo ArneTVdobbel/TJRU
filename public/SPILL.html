@@ -515,29 +515,36 @@
         // Legg til en bevegelsesblokker
         let isMoving = false;
 
-        // Oppdater handleKeydown-funksjonen
+        // Oppdatert bevegelseskontroll som fungerer for både touch og tastatur
+        function moveUp() {
+            if (!isMoving && currentLane < 3) {
+                isMoving = true;
+                currentLane++;
+                cart.style.bottom = lanes[currentLane] + 'px';
+                setTimeout(() => {
+                    isMoving = false;
+                }, 100);
+            }
+        }
+
+        function moveDown() {
+            if (!isMoving && currentLane > 0) {
+                isMoving = true;
+                currentLane--;
+                cart.style.bottom = lanes[currentLane] + 'px';
+                setTimeout(() => {
+                    isMoving = false;
+                }, 100);
+            }
+        }
+
+        // Tastaturkontroll
         function handleKeydown(e) {
-            if (!isMoving) {  // Sjekk om Chu allerede er i bevegelse
-                if (e.key === 'ArrowUp' && currentLane < 3) {
-                    isMoving = true;
-                    currentLane++;
-                    cart.style.bottom = lanes[currentLane] + 'px';
-                    
-                    // Tillat ny bevegelse etter 100ms
-                    setTimeout(() => {
-                        isMoving = false;
-                    }, 100);
-                }
-                if (e.key === 'ArrowDown' && currentLane > 0) {
-                    isMoving = true;
-                    currentLane--;
-                    cart.style.bottom = lanes[currentLane] + 'px';
-                    
-                    // Tillat ny bevegelse etter 100ms
-                    setTimeout(() => {
-                        isMoving = false;
-                    }, 100);
-                }
+            if (e.key === 'ArrowUp') {
+                moveUp();
+            }
+            if (e.key === 'ArrowDown') {
+                moveDown();
             }
         }
 
@@ -744,26 +751,24 @@
 
         touchUp.addEventListener('touchstart', (e) => {
             e.preventDefault();
-            isTouchingUp = true;
-            player.vy = -5; // Samme som space-tasten
-        });
-
-        touchUp.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            isTouchingUp = false;
-            if (!isTouchingDown) player.vy = 0;
+            moveUp();
         });
 
         touchDown.addEventListener('touchstart', (e) => {
             e.preventDefault();
-            isTouchingDown = true;
-            player.vy = 5; // Beveger nedover
+            moveDown();
         });
 
-        touchDown.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            isTouchingDown = false;
-            if (!isTouchingUp) player.vy = 0;
+        // Museklikk-kontroll (fungerer på alle enheter)
+        document.addEventListener('click', (e) => {
+            const clickY = e.clientY;
+            const windowHeight = window.innerHeight;
+            
+            if (clickY < windowHeight / 2) {
+                moveUp();
+            } else {
+                moveDown();
+            }
         });
 
         // Oppdater game loop for å inkludere touch
