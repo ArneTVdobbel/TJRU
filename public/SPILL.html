@@ -384,9 +384,40 @@
             cursor: pointer;
             border-radius: 5px;
         }
+
+        #touchControls {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            display: none; /* Skjult som standard, vises på mobil */
+            z-index: 10;
+        }
+        #touchUp {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50vh;
+        }
+        #touchDown {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50vh;
+        }
+        @media (max-width: 768px) {
+            #touchControls {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
+    <div id="touchControls">
+        <div id="touchUp"></div>
+        <div id="touchDown"></div>
+    </div>
     <div id="game-container">
         <div id="background">
             <div class="buildings"></div>
@@ -704,6 +735,50 @@
         // Start alle animasjoner
         animateRoad();
         animateBackground();
+
+        // Legg til touch-kontroller
+        const touchUp = document.getElementById('touchUp');
+        const touchDown = document.getElementById('touchDown');
+        let isTouchingUp = false;
+        let isTouchingDown = false;
+
+        touchUp.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            isTouchingUp = true;
+            player.vy = -5; // Samme som space-tasten
+        });
+
+        touchUp.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            isTouchingUp = false;
+            if (!isTouchingDown) player.vy = 0;
+        });
+
+        touchDown.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            isTouchingDown = true;
+            player.vy = 5; // Beveger nedover
+        });
+
+        touchDown.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            isTouchingDown = false;
+            if (!isTouchingUp) player.vy = 0;
+        });
+
+        // Oppdater game loop for å inkludere touch
+        function updateGameState() {
+            // ... eksisterende oppdateringskode ...
+
+            // Legg til touch-bevegelse hvis aktiv
+            if (isTouchingUp) {
+                player.vy = -5;
+            } else if (isTouchingDown) {
+                player.vy = 5;
+            }
+            
+            // ... resten av oppdateringskoden ...
+        }
     </script>
 </body>
 </html> 
