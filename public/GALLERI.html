@@ -9,78 +9,54 @@
             margin: 0;
             padding: 0;
             background: #000;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        img {
+        .gallery-container {
             width: 100%;
-            height: 100vh;
-            object-fit: cover;
-            transition: transform 0.3s ease, filter 0.3s ease;
-            transform-origin: center center; /* Sentrert zoom */
-            filter: grayscale(30%) contrast(110%) brightness(90%);
+            max-width: 800px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .zoomed {
-            transform: scale(1.5);
-            object-position: center center; /* Holder motivet sentrert under zoom */
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
-        /* Spesifikke zoom-posisjoner for hvert bilde */
-        .zoom-1-1-1 { transform: scale(1.5); transform-origin: 60% 40%; }
-        .zoom-1-1-2 { transform: scale(2.0); transform-origin: 45% 35%; }
-        .zoom-1-2-1 { transform: scale(1.5); transform-origin: 55% 30%; }
-        .zoom-1-2-2 { transform: scale(2.0); transform-origin: 50% 35%; }
-        .zoom-1-3-1 { transform: scale(1.5); transform-origin: 40% 40%; }
-        .zoom-1-3-2 { transform: scale(2.0); transform-origin: 45% 35%; }
-        .zoom-1-4-1 { transform: scale(1.5); transform-origin: 50% 40%; }
-        .zoom-1-4-2 { transform: scale(2.0); transform-origin: 55% 35%; }
-        .zoom-1-5-1 { transform: scale(1.5); transform-origin: 45% 40%; }
-        .zoom-1-5-2 { transform: scale(2.0); transform-origin: 50% 35%; }
-        .zoom-1-6-1 { transform: scale(1.5); transform-origin: 40% 35%; }
-        .zoom-1-6-2 { transform: scale(2.0); transform-origin: 45% 40%; }
+        .gallery-image:hover {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 820px) {
+            .gallery-container {
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body>
-    <img src="images/1.1.1.jpg" onclick="handleClick(event)" data-image-id="1.1.1">
-
-    <script>
-        const images = [
-            'images/1.1.1.jpg',
-            'images/1.1.2.jpg',
-            'images/1.2.1.jpg',
-            'images/1.2.2.jpg',
-            'images/1.3.1.jpg',
-            'images/1.3.2.jpg',
-            'images/1.4.1.jpg',
-            'images/1.4.2.jpg',
-            'images/1.5.1.jpg',
-            'images/1.5.2.jpg',
-            'images/1.6.1.jpg',
-            'images/1.6.2.jpg'
-        ];
-        
-        let currentIndex = 0;
-        const img = document.querySelector('img');
-        let isZoomed = false;
-        
-        function handleClick(e) {
-            if (isZoomed) {
-                // Fjern alle zoom-klasser
-                img.className = ''; // Fjerner alle klasser
-                // Gå til neste bilde
-                currentIndex = (currentIndex + 1) % images.length;
-                img.src = images[currentIndex];
-                // Oppdater data-image-id
-                img.dataset.imageId = images[currentIndex].split('/')[1].split('.jpg')[0];
-            } else {
-                // Zoom inn basert på hvilket bilde som vises
-                const imageId = img.dataset.imageId;
-                img.classList.add(`zoom-${imageId}`);
-            }
-            isZoomed = !isZoomed;
-        }
-    </script>
+    <div class="gallery-container">
+        <img src="/images/galleri/1.1.1.jpg" alt="Galleribilde" class="gallery-image" onclick="window.location.href='bilder/1.1.1.html'">
+        <img src="/images/galleri/1.1.2.jpg" alt="Galleribilde" class="gallery-image" onclick="window.location.href='bilder/1.1.2.html'">
+        <img src="/images/galleri/1.2.1.jpg" alt="Galleribilde" class="gallery-image" onclick="window.location.href='bilder/1.2.1.html'">
+        <img src="/images/galleri/1.2.2.jpg" alt="Galleribilde" class="gallery-image" onclick="window.location.href='bilder/1.2.2.html'">
+        <img src="/images/galleri/1.3.1.jpg" alt="Galleribilde" class="gallery-image" onclick="window.location.href='bilder/1.3.1.html'">
+        <img src="/images/galleri/1.3.2.jpg" alt="Galleribilde" class="gallery-image" onclick="window.location.href='bilder/1.3.2.html'">
+        <img src="/images/galleri/1.4.1.jpg" alt="Galleribilde" class="gallery-image" onclick="window.location.href='bilder/1.4.1.html'">
+        <img src="/images/galleri/1.4.2.jpg" alt="Galleribilde" class="gallery-image" onclick="window.location.href='bilder/1.4.2.html'">
+        <img src="/images/galleri/1.5.1.jpg" alt="Galleribilde" class="gallery-image" onclick="window.location.href='bilder/1.5.1.html'">
+        <img src="/images/galleri/1.5.2.jpg" alt="Galleribilde" class="gallery-image" onclick="window.location.href='bilder/1.5.2.html'">
+        <img src="/images/galleri/1.6.1.jpg" alt="Galleribilde" class="gallery-image" onclick="window.location.href='bilder/1.6.1.html'">
+        <img src="/images/galleri/1.6.2.jpg" alt="Galleribilde" class="gallery-image" onclick="window.location.href='bilder/1.6.2.html'">
+    </div>
 </body>
 </html>
