@@ -31,86 +31,98 @@
             background: transparent; /* Fjernet grønn testfarge */
         }
 
-        /* TV-skjermen - Justert for å følge TV-rammen nøyaktig */
+        /* Presise klikkbare områder med polygon-masker */
         #tv-link {
             top: 32%;
             left: 16%;
-            width: 33vw;
-            height: 24vh;
-            transform-origin: center;
+            width: 33%;
+            height: 24%;
+            clip-path: polygon(
+                10% 15%,  /* Øvre venstre hjørne */
+                90% 15%,  /* Øvre høyre hjørne */
+                95% 85%,  /* Nedre høyre hjørne */
+                5% 85%    /* Nedre venstre hjørne */
+            );
         }
 
-        /* Bilderammen - Justert for å dekke hele bildeserien */
         #galleri-link {
             top: 2%;
             left: 2%;
-            width: 28vw;
-            height: 38vh;
-            transform-origin: top left;
+            width: 28%;
+            height: 38%;
+            clip-path: polygon(
+                5% 5%,    /* Topp venstre */
+                95% 10%,  /* Topp høyre */
+                90% 90%,  /* Bunn høyre */
+                10% 85%   /* Bunn venstre */
+            );
         }
 
-        /* Kalenderen - Justert for å følge kalenderen nøyaktig */
         #kalender-link {
             top: 1%;
             right: 46%;
-            width: 20vw;
-            height: 28vh;
+            width: 20%;
+            height: 28%;
+            clip-path: polygon(
+                15% 0%,   /* Topp venstre */
+                85% 5%,   /* Topp høyre */
+                95% 95%,  /* Bunn høyre */
+                5% 90%    /* Bunn venstre */
+            );
             transform: rotate(-5deg);
-            transform-origin: top center;
         }
 
-        /* Katalogen - Justert for å dekke hele boken */
         #katalog-link {
             bottom: 6%;
             left: 2%;
-            width: 52vw;
-            height: 32vh;
-            transform-origin: bottom left;
+            width: 52%;
+            height: 32%;
+            clip-path: polygon(
+                5% 10%,   /* Topp venstre */
+                95% 5%,   /* Topp høyre */
+                98% 90%,  /* Bunn høyre */
+                2% 95%    /* Bunn venstre */
+            );
         }
 
-        /* Blå lue og figur - Shop */
         #shop-link {
             top: 6%;
             right: 12%;
-            width: 38vw;
-            height: 88vh;
-            transform-origin: top right;
+            width: 38%;
+            height: 88%;
+            clip-path: polygon(
+                30% 0%,   /* Topp */
+                85% 15%,  /* Høyre topp */
+                95% 85%,  /* Høyre bunn */
+                60% 100%, /* Bunn */
+                20% 90%,  /* Venstre bunn */
+                15% 15%   /* Venstre topp */
+            );
         }
 
-        /* Spill-element - Justert for bedre presisjon */
         #spill-link {
             right: 0;
             top: 32%;
-            width: 8vw;
-            height: 56vh;
-            z-index: 1000;
-            transform-origin: center right;
+            width: 8%;
+            height: 56%;
+            clip-path: polygon(
+                0% 0%,    /* Topp venstre */
+                100% 5%,  /* Topp høyre */
+                100% 95%, /* Bunn høyre */
+                0% 100%   /* Bunn venstre */
+            );
         }
 
-        @media (max-aspect-ratio: 1/1) {
+        @media (max-width: 768px) {
             body {
-                background-size: auto 100vh; /* Eksakt vertikal dekning */
-                background-position: 45% top;
-                height: 100vh;
-                min-height: 100vh;
-                overflow: hidden;
+                background-size: auto 100vh;
+                background-position: 45% center;
             }
 
             .clickable-area {
                 position: fixed;
                 transform-origin: top left;
                 transform: scale(calc(180vw / 960));
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                background-size: auto 100vh; /* Beholder eksakt vertikal dekning */
-                background-position: 40% top;
-            }
-
-            .clickable-area {
-                transform: scale(calc(220vw / 960));
             }
         }
     </style>
