@@ -13,7 +13,16 @@ app.get('/', (req, res) => {
 
 // Håndter /kalender endepunktet
 app.get('/kalender', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'kalender', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'KALENDER.html'));
+});
+
+// Håndter klikk1 og klikk2
+app.get('/kalender/klikk1', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'kalender', 'klikk1.html'));
+});
+
+app.get('/kalender/klikk2', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'kalender', 'klikk2.html'));
 });
 
 // Start serveren

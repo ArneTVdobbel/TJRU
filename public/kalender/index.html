@@ -3,38 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TJRU - KALENDER</title>
-    <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="kalender.css">
+    <title>KALENDER</title>
+    <style>
+        body {
+            background: #000;
+            margin: 0;
+            padding: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .klikk {
+            border: 1px solid blue;
+            padding: 10px;
+            text-decoration: none;
+        }
+        .klikk img {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <!-- Eksisterende navigasjon -->
-        </nav>
-    </header>
-
-    <main class="kalender-container">
-        <h1>KALENDER</h1>
-        
-        <section class="artikkel-grid">
-            <article class="artikkel-kort">
-                <a href="../bilder/artikkel2/serie-1.jpg" class="bilde-lenke">
-                    <h2>Serie I</h2>
-                    <time>20. Januar 2025</time>
-                    <img src="../bilder/artikkel2/serie-1.jpg" alt="Serie I">
-                </a>
-            </article>
-
-            <article class="artikkel-kort">
-                <h2>Vulgærmålform</h2>
-                <time>15. Januar 2025</time>
-                <img src="../bilder/artikkel1/vulgar-malform.jpg" alt="Vulgærmålform">
-                <div class="artikkel-tekst">
-                    <p>Les mer på <a href="https://opp.no/2024/01/vulgarmalform/" target="_blank" rel="noopener noreferrer">opp.no</a></p>
-                </div>
-            </article>
-        </section>
-    </main>
+    <div class="grid">
+        <a href="/kalender/klikk1.html" class="klikk">
+            <img src="../images/klikk1.jpg" alt="Klikk 1">
+        </a>
+        <a href="/kalender/klikk2.html" class="klikk">
+            <img src="../images/klikk2.jpg" alt="Klikk 2">
+        </a>
+    </div>
 </body>
 </html> 

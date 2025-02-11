@@ -5,22 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TJRU</title>
     <style>
-        body {
+        html, body {
             margin: 0;
             padding: 0;
-            height: 100vh;
-            background-image: url('images/front.jpg');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .background-container {
             position: relative;
-            overflow: hidden; /* Hindrer scrolling */
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100vh; /* Bruker viewport height som basis */
+            height: 100vh;
+            max-width: 100vw; /* Begrenser bredden til viewport width */
+        }
+
+        .background-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Beholder aspekt ratio */
         }
 
         .clickable-area {
-            position: absolute;
+            position: absolute; /* Posisjonert relativt til image-wrapper */
             cursor: pointer;
-            background: transparent; /* Fjernet rød testfarge */
+            background: transparent;
             transition: backdrop-filter 0.3s;
             border: none;
         }
@@ -33,15 +52,15 @@
 
         /* Presise klikkbare områder med polygon-masker */
         #tv-link {
-            top: 32%;
-            left: 16%;
-            width: 33%;
-            height: 24%;
+            top: 35%;    /* Justert fra 32% */
+            left: 15%;   /* Justert fra 16% */
+            width: 30%;  /* Justert fra 33% */
+            height: 25%; /* Justert fra 24% */
             clip-path: polygon(
-                10% 15%,  /* Øvre venstre hjørne */
-                90% 15%,  /* Øvre høyre hjørne */
-                95% 85%,  /* Nedre høyre hjørne */
-                5% 85%    /* Nedre venstre hjørne */
+                10% 15%,
+                90% 15%,
+                95% 85%,
+                5% 85%
             );
         }
 
@@ -59,15 +78,15 @@
         }
 
         #kalender-link {
-            top: 1%;
-            right: 46%;
+            top: 5%;     /* Justert fra 1% */
+            right: 45%;  /* Justert fra 46% */
             width: 20%;
-            height: 28%;
+            height: 25%; /* Justert fra 28% */
             clip-path: polygon(
-                15% 0%,   /* Topp venstre */
-                85% 5%,   /* Topp høyre */
-                95% 95%,  /* Bunn høyre */
-                5% 90%    /* Bunn venstre */
+                15% 0%,
+                85% 5%,
+                95% 95%,
+                5% 90%
             );
             transform: rotate(-5deg);
         }
@@ -112,39 +131,31 @@
                 0% 100%   /* Bunn venstre */
             );
         }
-
-        @media (max-width: 768px) {
-            body {
-                background-size: auto 100vh;
-                background-position: 45% center;
-            }
-
-            .clickable-area {
-                position: fixed;
-                transform-origin: top left;
-                transform: scale(calc(180vw / 960));
-            }
-        }
     </style>
 </head>
 <body>
-    <div id="tv-link" class="clickable-area" 
-         onclick="window.location.href='https://youtube.com/playlist?list=PL9JattdUTae9Jhq5ceb-jKTZEw6gs0ouj'">
-    </div>
-    <div id="galleri-link" class="clickable-area" 
-         onclick="window.location.href='GALLERI.html'">
-    </div>
-    <div id="kalender-link" class="clickable-area" 
-         onclick="window.location.href='kalender/vulgar-malform.html'">
-    </div>
-    <div id="katalog-link" class="clickable-area" 
-         onclick="window.location.href='https://open.spotify.com/track/6MeGOliTYPAYsfOHA3sG8k?si=ef969c03738e4859'">
-    </div>
-    <div id="shop-link" class="clickable-area" 
-         onclick="window.location.href='SHOP.html'">
-    </div>
-    <div id="spill-link" class="clickable-area" 
-         onclick="window.location.href='SPILL.html'">
+    <div class="background-container">
+        <div class="image-wrapper">
+            <img src="images/front.jpg" alt="TJRU" class="background-image">
+            <div id="tv-link" class="clickable-area" 
+                 onclick="window.location.href='https://youtube.com/playlist?list=PL9JattdUTae9Jhq5ceb-jKTZEw6gs0ouj'">
+            </div>
+            <div id="galleri-link" class="clickable-area" 
+                 onclick="window.location.href='GALLERI.html'">
+            </div>
+            <div id="kalender-link" class="clickable-area" 
+                 onclick="window.location.href='/kalender'">
+            </div>
+            <div id="katalog-link" class="clickable-area" 
+                 onclick="window.location.href='https://open.spotify.com/track/6MeGOliTYPAYsfOHA3sG8k?si=ef969c03738e4859'">
+            </div>
+            <div id="shop-link" class="clickable-area" 
+                 onclick="window.location.href='SHOP.html'">
+            </div>
+            <div id="spill-link" class="clickable-area" 
+                 onclick="window.location.href='SPILL.html'">
+            </div>
+        </div>
     </div>
 </body>
 </html>

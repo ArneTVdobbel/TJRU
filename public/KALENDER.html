@@ -5,24 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TJRU - KALENDER</title>
     <style>
-        body {
-            margin: 0;
-            padding: 20px;
+        html, body {
             background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            height: 100%;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            padding: 20px;
+            max-width: 90vw;
+            margin: 0 auto;
             min-height: 100vh;
         }
-        img {
-            max-width: 800px;
+        .klikk {
+            border: 1px solid #333;
+            padding: 10px;
+        }
+        .klikk img {
+            width: 100%;
             height: auto;
+            cursor: pointer;
+        }
+        .klikk a {
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <a href="kalender/vulgar-malform.html">
-        <img src="images/vulgar-malform.jpeg" alt="VULGÆR MÅLFORM">
-    </a>
+    <div class="grid">
+        <div class="klikk">
+            <a href="/kalender/klikk2">
+                <img src="/images/klikk2.jpg" alt="Klikk 2">
+            </a>
+        </div>
+        <div class="klikk">
+            <a href="/kalender/klikk1">
+                <img src="/images/klikk1.jpeg" alt="Klikk 1">
+            </a>
+        </div>
+    </div>
 </body>
 </html> 
