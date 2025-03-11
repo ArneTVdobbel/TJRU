@@ -1,1 +1,91 @@
- 
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJRU - TV</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            min-height: 100vh;
+            color: gold;
+            font-family: Arial, sans-serif;
+        }
+
+        .tv-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .youtube-link {
+            display: inline-block;
+            padding: 15px 30px;
+            background: gold;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .youtube-link:hover {
+            transform: scale(1.05);
+            background: #ffd700;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: transparent;
+            color: gold;
+            border: 1px solid gold;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="back-button">TILBAKE</a>
+    
+    <div class="tv-container">
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/jxxum4bA9G4" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+        </div>
+
+        <a href="https://youtube.com/playlist?list=PL9JattdUTae9Jhq5ceb-jKTZEw6gs0ouj" 
+           class="youtube-link" 
+           target="_blank">
+            SE ALLE VIDEOER PÅ YOUTUBE
+        </a>
+    </div>
+</body>
+</html> 
