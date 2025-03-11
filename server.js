@@ -8,12 +8,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Håndter rotendepunktet
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'splash.html'));
 });
 
 // Håndter /kalender endepunktet
 app.get('/kalender', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'KALENDER.html'));
+    res.sendFile(path.join(__dirname, 'public', 'kalender', 'index.html'));
 });
 
 // Håndter klikk1 og klikk2
