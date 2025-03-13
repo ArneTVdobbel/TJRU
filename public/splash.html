@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TJRU - Coming Soon</title>
+    <title>TJRU - Under Konstruksjon</title>
     <style>
         body {
             margin: 0;
@@ -20,32 +20,48 @@
 
         .splash-container {
             text-align: center;
-            animation: pulse 2s infinite;
+            position: relative;
         }
 
-        h1 {
-            font-size: 4em;
+        .logo {
+            font-size: 8em;
             margin: 0;
-            letter-spacing: 10px;
+            letter-spacing: 15px;
+            text-shadow: 0 0 10px gold;
+            animation: glow 2s infinite;
         }
 
-        p {
-            font-size: 1.5em;
+        .message {
+            font-size: 1.8em;
+            margin-top: 30px;
+            letter-spacing: 8px;
+            opacity: 0;
+            animation: fadeInOut 4s infinite;
+        }
+
+        .construction {
+            font-size: 1.2em;
             margin-top: 20px;
-            letter-spacing: 5px;
+            letter-spacing: 3px;
+            color: #666;
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.5; }
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px gold; }
+            50% { text-shadow: 0 0 30px gold, 0 0 50px gold; }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
             50% { opacity: 1; }
-            100% { opacity: 0.5; }
         }
     </style>
 </head>
 <body>
     <div class="splash-container">
-        <h1>TJRU</h1>
-        <p>KOMMER SNART</p>
+        <h1 class="logo">TJRU</h1>
+        <p class="message">KOMMER SNART</p>
+        <p class="construction">UNDER KONSTRUKSJON</p>
     </div>
 </body>
 </html> 

@@ -9,18 +9,120 @@
             margin: 0;
             padding: 0;
             background: #000;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            color: gold;
+            font-family: Arial, sans-serif;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
         }
 
-        img {
-            width: 100%;
-            height: 100vh;
-            object-fit: cover;
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .katalog-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+            min-height: 90vh;
+        }
+
+        .album-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .album-item {
+            padding: 30px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: gold;
+        }
+
+        .album-item:hover {
+            border-color: gold;
+            background: rgba(255, 215, 0, 0.05);
+            transform: translateX(10px);
+        }
+
+        .album-title {
+            font-size: 3em;
+            margin: 0;
+            padding: 0;
+            letter-spacing: 10px;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .album-year {
+            font-size: 1.2em;
+            margin-top: 10px;
+            color: #666;
+            letter-spacing: 4px;
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            padding: 15px 30px;
+            background: transparent;
+            color: gold;
+            border: 1px solid gold;
+            text-decoration: none;
+            z-index: 100;
+            letter-spacing: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateX(-5px);
+        }
+
+        .page-title {
+            font-size: 1.5em;
+            letter-spacing: 8px;
+            margin-bottom: 60px;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <img src="bilder/1.1.1.jpg" onclick="window.location.href='bilder/1.1.2.html'">
+    <a href="/" class="back-button">TILBAKE</a>
+    
+    <div class="katalog-container">
+        <div class="page-title">KATALOG</div>
+        
+        <div class="album-list">
+            <a href="/albums/groft-mae-potte.html" class="album-item">
+                <div class="album-title">GRØFT MÆ POTTE</div>
+                <div class="album-year">2025</div>
+            </a>
+
+            <a href="/albums/vulgaer-malform.html" class="album-item">
+                <div class="album-title">VULGÆR MÅLFORM</div>
+                <div class="album-year">2024</div>
+            </a>
+
+            <a href="/albums/vakse-ryss.html" class="album-item">
+                <div class="album-title">VAKSE RYSS</div>
+                <div class="album-year">2023</div>
+            </a>
+
+            <a href="/albums/i-all-verden.html" class="album-item">
+                <div class="album-title">I ALL VERDEN</div>
+                <div class="album-year">2022</div>
+            </a>
+        </div>
+    </div>
 </body>
 </html> 

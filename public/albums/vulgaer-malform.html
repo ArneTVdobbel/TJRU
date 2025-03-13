@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJRU - VULGÆR MÅLFORM</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            min-height: 100vh;
+            color: gold;
+            font-family: Arial, sans-serif;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .album-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .album-cover {
+            width: 500px;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .album-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .album-cover:hover img {
+            transform: scale(1.02);
+        }
+
+        .album-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .album-title {
+            font-size: 4em;
+            margin: 0 0 20px 0;
+            letter-spacing: 10px;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .album-year {
+            font-size: 1.5em;
+            color: #666;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+        }
+
+        .album-description {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #999;
+            margin-bottom: 40px;
+        }
+
+        .spotify-link {
+            display: inline-block;
+            padding: 20px 40px;
+            background: #FFD700;
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            letter-spacing: 3px;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .spotify-link:hover {
+            transform: scale(1.05);
+            background: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .back-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            padding: 15px 30px;
+            background: transparent;
+            color: gold;
+            border: 1px solid gold;
+            text-decoration: none;
+            z-index: 100;
+            letter-spacing: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateX(-5px);
+        }
+
+        .tracklist {
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            padding-top: 40px;
+        }
+
+        .track {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .track:hover {
+            color: #FFD700;
+        }
+
+        .track-number {
+            width: 30px;
+            font-size: 1.1em;
+        }
+
+        .track-title {
+            font-size: 1.1em;
+            letter-spacing: 2px;
+        }
+
+        .track-duration {
+            margin-left: auto;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <a href="/KATALOG.html" class="back-button">TILBAKE</a>
+    
+    <div class="album-container">
+        <div class="album-cover">
+            <img src="/images/albums/vulgar-malform.jpg" alt="VULGÆR MÅLFORM album cover">
+        </div>
+        
+        <div class="album-info">
+            <h1 class="album-title">VULGÆR MÅLFORM</h1>
+            <div class="album-year">2024</div>
+            
+            <div class="album-description">
+                VULGÆR MÅLFORM er det andre studioalbumet fra Arne T. 
+                Albumet utforsker nye territorier innen norsk rap, med 
+                et særegent fokus på dialekt og ordspill.
+            </div>
+
+            <div class="tracklist">
+                <div class="track">
+                    <span class="track-number">01</span>
+                    <span class="track-title">BOK MÆ RIM</span>
+                    <span class="track-duration">3:16</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">02</span>
+                    <span class="track-title">SLUDD</span>
+                    <span class="track-duration">5:13</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">03</span>
+                    <span class="track-title">PÅ EN MÅTE</span>
+                    <span class="track-duration">2:53</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">04</span>
+                    <span class="track-title">RA</span>
+                    <span class="track-duration">3:12</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">05</span>
+                    <span class="track-title">OM DÆ VA E SOM RÅDD</span>
+                    <span class="track-duration">3:45</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">06</span>
+                    <span class="track-title">NOK (VM)</span>
+                    <span class="track-duration">2:58</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">07</span>
+                    <span class="track-title">Q DEN (feat. Steingrim)</span>
+                    <span class="track-duration">3:21</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">08</span>
+                    <span class="track-title">TOUCHÉ</span>
+                    <span class="track-duration">2:47</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">09</span>
+                    <span class="track-title">SÅNN</span>
+                    <span class="track-duration">3:02</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">10</span>
+                    <span class="track-title">GOOD</span>
+                    <span class="track-duration">2:55</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">11</span>
+                    <span class="track-title">HANGMAN</span>
+                    <span class="track-duration">3:18</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">12</span>
+                    <span class="track-title">SPRENG</span>
+                    <span class="track-duration">2:42</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">13</span>
+                    <span class="track-title">TØRST</span>
+                    <span class="track-duration">3:08</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">14</span>
+                    <span class="track-title">YO</span>
+                    <span class="track-duration">2:51</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">15</span>
+                    <span class="track-title">KOM HIT</span>
+                    <span class="track-duration">3:24</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">16</span>
+                    <span class="track-title">STAND OPP</span>
+                    <span class="track-duration">3:15</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">17</span>
+                    <span class="track-title">DÆ Æ SOM DÆ Æ</span>
+                    <span class="track-duration">2:49</span>
+                </div>
+                <div class="track">
+                    <span class="track-number">18</span>
+                    <span class="track-title">SISTE ORD</span>
+                    <span class="track-duration">3:33</span>
+                </div>
+            </div>
+
+            <a href="https://open.spotify.com/track/6MeGOliTYPAYsfOHA3sG8k" 
+               class="spotify-link" 
+               target="_blank">
+                LYTT PÅ SPOTIFY
+            </a>
+        </div>
+    </div>
+</body>
+</html> 
